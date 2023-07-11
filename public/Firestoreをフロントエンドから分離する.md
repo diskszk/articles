@@ -43,7 +43,7 @@ CRUD 機能を持ったシンプルな TODO アプリです。
 - それぞれの TODO のチェックボックスからチェックを外すと、未完了とみなし、上書きする
 - それぞれの TODO の削除ボンタンをクリックすると TODO を削除する
 
-node.js のサーバーサイドフレームワークである Express と、Firestore と同じく firebase が提供する Cloud Functions を用いて、サーバーサイドを作ります。  
+Node.js のサーバーサイドフレームワークである Express と、Firestore と同じく firebase が提供する Cloud Functions を用いて、サーバーサイドを作ります。  
 [Firebase Admin SDK](https://firebase.google.com/docs/reference/admin) を使うことで Firestore を操作できます。  
 
 エンドポイントへ HTTP でアクセスすることで、サーバーサイドアプリを通して Firestore への読み書きの結果を JSON 形式でフロントエンドへと返す WebAPI を作ります。  
@@ -100,7 +100,7 @@ export const helloWorld = functions.https.onRequest((request, response) => {
 
 ### Express を導入する
 
-各エンドポイントへのルーティングをするために node.js のサーバーサイドフレームワークである Express を導入します。  
+各エンドポイントへのルーティングをするために Node.js のサーバーサイドフレームワークである Express を導入します。  
 
 ライブラリを install します。
 `$ yarn add express`
@@ -121,7 +121,7 @@ app.get("/helloworld", (req, res) => {
 export const api = functions.region("asia-northeast1").https.onRequest(app);
 ```
 
-最終行で変数 api を export することで、cloud functions で api 配下にそれぞれルーティングを作成します。    
+最終行で変数 API を export することで、cloud functions で API 配下にそれぞれルーティングを作成します。    
 ファイルを保存した後、 `$ yarn serve` コマンドを実行し、準備ができたら別タブで以下のように curl コマンドを実行します。  
 `curl -X GET http://127.0.0.1:5001/{プロジェクトのID}/asia-northeast1/api/helloworld` と入力し `Hello Express` が返ってくれば成功です。
 

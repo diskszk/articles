@@ -1,0 +1,16 @@
+# Ignore file:
+public/.remote/
+
+; 公開済みのものにはtextlintでエラーを出さない 
+./public/CustomHookをテストしてみる.md
+./public/Firestoreをフロントエンドから分離する.md
+./public/react-queryを使ってModalの状態を管理する.md
+./public/ReactコンポーネントでWebAPIからデータを取得し画面に表示するまで.md
+./public/useContext+useReducerを使ってタスク管理アプリをテストファーストで作る.md
+./public/useEffectをちゃんと理解する.md
+./public/Viteで環境構築.md
+./public/Vite環境で環境変数が使われているファイルをテストする.md
+./public/「勉強の方法」を勉強してみた.md
+./public/【Slate.js】リッチテキストエディタをつくる.md
+./public/テストで身につける保守性のテクニック.md
+./public/複数のプロジェクトで型情報を使い回すためにnpmパッケージにして公開する.md
