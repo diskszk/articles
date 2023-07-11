@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "@qiita/qiita-cli": "^0.4.0"
+  },
+  "name": "qiita-articles",
+  "version": "1.0.0",
+  "author": "diskszk <ibalucky23@gmail.com>",
+  "license": "MIT"
+}
