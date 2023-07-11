@@ -1,5 +1,5 @@
 ---
-title: 　【React】useEffectをちゃんと理解する
+title: useEffectをちゃんと理解する
 tags:
   - React
   - react-hooks
