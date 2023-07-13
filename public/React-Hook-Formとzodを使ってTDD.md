@@ -1,12 +1,11 @@
 ---
 title: React-Hook-Formとzodを使ってTDD
 tags:
-  - 'react'
+  - React
 private: true
-updated_at: ''
-id: null
+updated_at: '2023-07-13T22:51:03+09:00'
+id: 154590fbcda7f9a72dfa
 organization_url_name: null
-code_path: /Users/suzukidaisuke/work/products/testing-sandbox/src/tdd-with-rhf_zod
 ---
 
 ## TDD とは
