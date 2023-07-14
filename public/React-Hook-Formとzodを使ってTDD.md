@@ -1,17 +1,37 @@
 ---
 title: React-Hook-Formとzodを使ってTDD
 tags:
+  - TDD
+  - テスト
   - React
-private: true
-updated_at: '2023-07-13T22:51:03+09:00'
+  - react-hook-form
+private: false
+updated_at: '2023-07-14T22:21:01+09:00'
 id: 154590fbcda7f9a72dfa
 organization_url_name: null
 ---
 
 ## TDD とは
-TODO: なにか参照して言及する
 
-## 
+https://ja.wikipedia.org/wiki/%E3%83%86%E3%82%B9%E3%83%88%E9%A7%86%E5%8B%95%E9%96%8B%E7%99%BA
+
+テスト駆動開発 (Test Driven Development : TDD) は、ソフトウェア開発プロセスの 1 つで、テストを先に書いてから実装を進める手法です。このプロセスに沿って開発を進めることで、バグの早期発見やコード品質の向上、可読性の高いコードの実装を目的としています。
+
+具体的には、以下のような手順で開発が進められます。
+
+1. テストケースを書く
+最初に、書きたい機能（メソッドやクラスなど）のテストケースを書きます。このテストケースでは、想定される入力に対して、どのような結果が返ってくるべきかを定義します。このテストケース自体は、まだ通らないものになります。
+
+2. テストが通る最小限の実装をする
+次に、テストを通すために最小限の実装をします。この実装は、機能に必要な最小限の処理のみを実装します。
+
+3. テストが通るリファクタリングを行う
+テストが通る最小限の実装ができたら、その後にリファクタリングを行い、コード品質を向上させます。このリファクタリングでは、可読性や保守性の高いコードにすることが主な目的となります。
+
+4. 1-3 を繰り返す
+次に、新しいテストケースを追加して、上記の手順を繰り返します。このように、テストケースを書いてから実装を進めていくことで、バグを早期発見でき、また可読性や保守性に優れたコードを実装できます。
+
+このように、TDD は品質の高いソフトウェアを開発するための手法のひとつとなっています。
 
 ## 開発環境
 node: 18.14.0
@@ -25,7 +45,17 @@ zod: 3.21.4
 
 vite-cli から react-ts のテンプレーとを使って react 環境を作りました。
 
-TODO: React Hook Form　の説明、 zod の説明
+### React Hook Form とは
+
+https://www.react-hook-form.com
+
+React でのフロントエンド開発でフォームを扱いやすくするためのライブラリです。フォームのバリデーションや送信などの機能をサポートしており、Hooks を利用することで簡単に実装できます。また、スケーラビリティに優れ高速で動作するという特徴もあります。
+
+### zod とは
+
+https://zod.dev
+
+TypeScript での型バリデーションをより簡単に行うことができるライブラリです。主に、入力データのバリデーションやサーバーから返ってきた JSON データの型チェックに利用されます。例えば、API のリクエストパラメータのバリデーションやフォームの入力値チェックなどに使われることが多いです。また、zod はオブジェクトのネストやオプションのバリデーションなどをサポートしており、複雑なオブジェクトを扱う場合にも便利です。
 
 ## 仕様
 
@@ -49,15 +79,15 @@ TODO: React Hook Form　の説明、 zod の説明
   - タイトルか本文のどちらかの入力を変更した場合、活性になる
   - 送信中は非活性である
 
-また、送信ボタンがクリックされた時の処理についても定義します。
+送信ボタンがクリックされた時の処理についても定義します。
 - タイトルに入力された文字数が 0 文字、または、25 文字より大きい場合、 submit 処理は実行しない
 - 本文に入力された文字数が 0 文字、または、140 文字より大きい場合、 submit 処理は実行しない
-- 送信後は入力フォームは初期化する
+- 送信後は入力フォームを初期化する
 
-また、ブラウザの開発者コンソールから送信ボタンの非活性を取り消されてクリックされるなどして、不正な値がサーバーに渡るのを防ぐため以下の条件も追加します。
-( これらは送信ボタンがクリックされて実行する関数内に実装します。 )
-- タイトルに入力された文字数が 0 文字、または、25 文字より大きい場合、トーストにエラーを表示する
-- 本文に入力された文字数が 0 文字、または、140 文字より大きい場合、トーストにエラーを表示する
+送信処理の成功 / 失敗の通知について定義します。
+- 送信が完了したら、送信が完了した旨のメッセージを snackbar に表示する
+- 送信中にエラーが発生したら、エラーが発生した旨を snackbar に表示する
+  - snackbar は 3000mm 秒後非表示になる
 
 1. TODO　リストを作成する
 
@@ -72,11 +102,9 @@ TDD の流儀に習い TODO リストを作成します。
 - [ ] バリデーションエラーがある場合、submit 関数は実行しない
 - [ ] 送信中は非活性である
 - [ ] 送信後は入力フォームを初期化する
-- [ ] 記事を WebAPI に送信する関数を用意する
-- [ ] 関数内でエラーを起こす
-- [ ] トーストを用意する
-- [ ] 記事作成が失敗した旨をトーストに表示する
-- [ ] 記事作成が成功した旨をトーストに表示する
+- [ ] snackbar を用意する
+- [ ] 記事作成が失敗した旨を snackbar に表示する
+- [ ] 記事作成が成功した旨を snackbar に表示する
 
 ## 実装
 
@@ -116,6 +144,20 @@ export const CreatePostForm: React.FC = () => {
 ![02OK.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/639130/d9b858f4-4a19-dc91-876f-ee65063b2255.png)
 
 テストが無事通りました！これで TODO リストの `初期事表示では送信ボタンが非活性` は OK です。
+
+
+- [x] タイトルか本文に 1 文字以上入力すると、送信ボタンが活性になる
+- [x] 初期事表示では送信ボタンが非活性
+- [ ] 送信ボタンが非活性から活性に切り替わる
+- [ ] タイトルの入力欄にバリデーションエラーメッセージを表示する
+- [ ] 本文の入力欄にバリデーションエラーメッセージを表示する
+- [ ] submit 関数が実行することを確認する
+- [ ] バリデーションエラーがある場合、submit 関数は実行しない
+- [ ] 送信中は非活性である
+- [ ] 送信後は入力フォームを初期化する
+- [ ] snackbar を用意する
+- [ ] 記事作成が失敗した旨を snackbar に表示する
+- [ ] 記事作成が成功した旨を snackbar に表示する
 
 ### 入力フォームのテスト
 
@@ -221,6 +263,17 @@ export const CreatePostForm: React.FC = () => {
 
 テストが通りました！
 これで `タイトルか本文に 1 文字以上入力すると、送信ボタンが活性になる` と `送信ボタンが非活性から活性に切り替わる` は OK です。
+
+- [x] 送信ボタンが非活性から活性に切り替わる
+- [ ] タイトルの入力欄にバリデーションエラーメッセージを表示する
+- [ ] 本文の入力欄にバリデーションエラーメッセージを表示する
+- [ ] submit 関数が実行することを確認する
+- [ ] バリデーションエラーがある場合、submit 関数は実行しない
+- [ ] 送信中は非活性である
+- [ ] 送信後は入力フォームを初期化する
+- [ ] snackbar を用意する
+- [ ] 記事作成が失敗した旨を snackbar に表示する
+- [ ] 記事作成が成功した旨を snackbar に表示する
 
 ### バリデーションのテスト
 
@@ -442,6 +495,15 @@ test("本文に140字入力された場合、バリデーションエラーが�
 
 ![validTestOK.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/639130/0a78996d-169b-0aba-988f-9bb15fa01b66.png)
 
+- [x] タイトルの入力欄にバリデーションエラーメッセージを表示する
+- [x] 本文の入力欄にバリデーションエラーメッセージを表示する
+- [ ] submit 関数が実行することを確認する
+- [ ] バリデーションエラーがある場合、submit 関数は実行しない
+- [ ] 送信中は非活性である
+- [ ] 送信後は入力フォームを初期化する
+- [ ] snackbar を用意する
+- [ ] 記事作成が失敗した旨を snackbar に表示する
+- [ ] 記事作成が成功した旨を snackbar に表示する
 
 ### テストコードのリファクタリング
 
@@ -620,6 +682,14 @@ test("本文に141文字入力され、タイトルが正常に入力された�
 
 ![ 2023-07-13 20.19.24.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/639130/e9e2d14f-4f30-a161-f92d-351f16f51a28.png)
 
+- [x] submit 関数が実行することを確認する
+- [x] バリデーションエラーがある場合、submit 関数は実行しない
+- [ ] 送信中は非活性である
+- [ ] 送信後は入力フォームを初期化する
+- [ ] snackbar を用意する
+- [ ] 記事作成が失敗した旨を snackbar に表示する
+- [ ] 記事作成が成功した旨を snackbar に表示する
+
 ### 入力フォームの残りのテスト
 
 入力フォームのテストは残り `送信中は送信ボタンは非活性` 、`送信後は入力フォームは初期化する` の 2 つとなります。
@@ -717,16 +787,355 @@ export const CreatePostForm: React.FC<Props> = ({ handleSubmitPost }) => {
 
 ![reset.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/639130/275a7b17-8a6e-c2ff-05e6-f2163c0e31d3.png)
 
-### 関数のテスト
+- [x] 送信中は非活性である
+- [x] 送信後は入力フォームを初期化する
+- [ ] snackbar を用意する
+- [ ] 記事作成が失敗した旨を snackbar に表示する
+- [ ] 記事作成が成功した旨を snackbar に表示する
 
-続いて `記事を WebAPI に送信する関数を用意する` こちらの TODO をクリアしていきます。
+### snackbar を用意する
 
+記事の作成の成否を表示する snackbar を用意します。
 
+`CreatePostForm` コンポーネントと `snackbar` コンポーネントをラップする `CreatePostPage` を作成します。
 
-実際に WebAPI サーバーを作らずにテストだけを行いたいので、 msw を使って WebAPI サーバをモックします。
+```tsx CreatePostPage
+import { CreatePostForm } from "./CreatePostForm";
+
+export const CreatePostPage: React.FC = () => {
+
+  return (
+    <div>
+      <CreatePostForm handleSubmitPost={() => void 0} />
+    </div>
+  );
+};
+```
+
+今回は `CreatePostPage` コンポーネントで snackbar の state 管理をします。
+```tsx 
+import { useEffect } from "react";
+
+type Props = {
+  message: string;
+  isOpen: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export const Snackbar: React.FC<Props> = ({ message, isOpen, setOpen }) => {
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setOpen(false);
+    }, 3000);   // 3000ms後に非表示にする
+    return () => clearTimeout(timeout);
+  }, [isOpen, setOpen]);
+
+  if (!isOpen) {
+    return null;
+  }
+
+  return <div role="alert">{message}</div>;
+};
+```
+
+```tsx
+import { useState } from "react";
+import { CreatePostForm } from "./CreatePostForm";
+import { Snackbar } from "./Snackbar";
+
+export const CreatePostPage: React.FC = () => {
+  const [isOpen, setOpen] = useState(false);
+  const [message, setMessage] = useState("");
+
+  return (
+    <div>
+      <CreatePostForm handleSubmitPost={() => void 0} />
+      <Snackbar message={message} isOpen={isOpen} setOpen={setOpen} />
+    </div>
+  );
+};
+```
+
+- [x] snackbar を用意する
+- [ ] 記事作成が失敗した旨を snackbar に表示する
+- [ ] 記事作成が成功した旨を snackbar に表示する
+
+### カスタムフックス
+
+続いて WebAPI とのつなぎ込みの処理を書いていきます。
+
+`useCreatePost.spec.tsx`, `useCreatePost.ts` の 2 つのファイルを作成します。
+この時、ブラウザの開発者ツールなどから、送信ボタンの非活性を無効化されたとしても、不正な値がサーバーへ送信されるのを防ぐためのテストと実装を書いていきます。
+
+エラーが発生する場合のテストを書きます。
+```tsx
+test("タイトルが0文字の場合、エラーが発生する");
+test("タイトルが26文字の場合、エラーが発生する");
+test("本文が0文字の場合、エラーが発生する");
+test("本文が141文字の場合、エラーが発生する");
+```
+
+カスタムフックでバリデーションを行うとして、 testing-library を使ってカスタムフックスをテストしていきます。
+```tsx
+const { result } = renderHook(() => useCreatePost());
+
+test("タイトルが0文字の場合、エラーが発生する", async () => {
+  await expect(
+    async () =>
+      await result.current.createPost({ title: "", body: "テスト用本文" })
+  ).rejects.toThrow("タイトルに不正な値が入力されています。");
+});
+```
+useCreatePost に createPost 関数を定義し、 HTTP POST メソッドを使い、 WebAPI に記事の情報を送信します。
+
+```tsx
+function useCreatePost() {
+  const createPost = async (data: Input) => {
+    if (data.title.length < 1 || data.title.length > 25) {
+      throw new Error("タイトルに不正な値が入力されています。");
+    }
+    if (data.body.length < 1 || data.body.length > 140) {
+      throw new Error("本文に不正な値が入力されています。");
+    }
+
+    try {
+      await axios.post("api/posts", JSON.stringify(data), {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return;
+    } catch {
+      throw new Error("エラーが発生しました。");
+    }
+  };
+
+  return { createPost };
+}
+```
+
+テストは OK ですね。
+
+![ 2023-07-14 16.36.51.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/639130/3b0d2a67-b50e-e7a1-5f53-28f635e8df08.png)
+
+### snackbarに記事の作成の成否を表示する
+
+いままで作成したコンポーネント、関数を組み合わせて、記事作成の成否のテストを行います。
+
+`CreatePostPage.spec.tsx` ファイルを作成し、テストを書いていきます。
+
+ひとまず、検証結果だけをテストコードに記載します。
+```tsx
+const user = userEvent.setup();
+
+test("記事の作成中にエラーが発生する場合、記事の作成に失敗した旨のメッセージを表示する", async () => {
+  // arrange
+  // act
+
+  // assert
+  expect(screen.getByRole("alert")).toHaveTextContent("エラーが発生しました。");
+});
+```
+
+このテストを実現するには、`CreatePostPage` コンポーネントを使う必要があります。
+`CreatePostPage` 内で `CreatePostForm` コンポーネントを呼び出しているので、入力フォームを使えます。
+
+setup 関数で、`CratePostPage` の呼び出しと、バリデーションエラーが発生しないフォームを入力します。
+
+```tsx
+const setup = async () => {
+  render(<CreatePostPage />);
+
+  const title = screen.getByRole("textbox", { name: "タイトル" });
+  const body = screen.getByRole("textbox", { name: "本文" });
+
+  await user.type(title, "テスト用タイトル");
+  await user.type(body, "テスト用本文");
+
+  const submitButton = screen.getByRole("button", { name: "送信" });
+
+  const clickSubmitButton = async () => {
+    await user.click(submitButton);
+  };
+
+  return { clickSubmitButton };
+};
+```
+
+テストケースで setup を実行し、テストの準備と実行を省略します。
+
+```tsx
+test("記事の作成中にエラーが発生する場合、記事の作成に失敗した旨のメッセージを表示する", async () => {
+  const { clickSubmitButton } = await setup();
+
+  await clickSubmitButton();
+
+  expect(screen.getByRole("alert")).toHaveTextContent("エラーが発生しました。");
+});
+```
+
+このままでは正常に関数が終了し、記事作成が成功するので、 msw を使ってエラーの発生をモックします。
 
 #### msw を導入する
 
 https://mswjs.io/docs/getting-started/install
 
-公式ドキュメントに習って
+公式ドキュメントに従い、msw を用意します。
+
+```ts mocks/server.ts
+import { rest } from "msw";
+export const handlers = [
+  rest.post("api/posts", (_req, res, ctx) => {
+    return res(ctx.status(201));
+  }),
+];
+
+export const server = setupServer(...handlers);
+```
+
+テストコードでエラーを発生させます。  
+msw を使って、意図的にエラーを起こし、エラー時のテストを書きます。
+
+```tsx
+import { server } from "@/mocks/server";
+import { rest } from "msw";
+
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
+
+test("記事の作成中にエラーが発生する場合、記事の作成に失敗した旨のメッセージを表示する", async () => {
+  server.use(
+    rest.post("api/posts", (_req, res, ctx) => {
+      // 400エラー(Bad Request)を発生させる
+      return res(ctx.status(400));
+    })
+  );
+  const { clickSubmitButton } = await setup();
+
+  await clickSubmitButton();
+
+  expect(screen.getByRole("alert")).toHaveTextContent("エラーが発生しました。");
+});
+```
+
+まだ、実装がないのでテストは通りません。
+
+### CreatePostPage コンポーネントの実装
+
+`CreatePostForm` でクリック時に実行する関数を定義します。
+こちらでは、 `useCreatePost` 関数で定義した、 `createPost` を使います。
+カスタムフックスにロジックを譲ることで、処理が別れ、テストもしやすくなります。
+
+```tsx
+export const CreatePostPage: React.FC = () => {
+  const { createPost } = useCreatePost();
+
+  const handleSubmitPost = useCallback(
+    async (data: Input) => {
+      await createPost(data);
+    },
+    [createPost]
+  );
+
+  return (
+    <div>
+      <CreatePostForm handleSubmitPost={handleSubmitPost} />
+      ...
+    </div>
+  );
+}
+```
+
+続いて、成否のメッセージを作成した snackbar に表示する処理を書きます。
+createPost 関数が成功したら、関数が異常終了したら、エラーを snackbar に表示します。
+
+```tsx
+export const CreatePostPage: React.FC = () => {
+  const [isOpen, setOpen] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const { createPost } = useCreatePost();
+  const handleSubmitPost = useCallback(
+    async (data: Input) => {
+      try {
+        await createPost(data);
+      } catch (err) {
+        setMessage(err.message);
+        setOpen(true);
+      }
+    },
+    [createPost]
+  );
+
+  return (
+    <div>
+      <CreatePostForm handleSubmitPost={handleSubmitPost} />
+      <Snackbar message={message} isOpen={isOpen} setOpen={setOpen} />
+    </div>
+  );
+}
+```
+`記事の作成中にエラーが発生する場合、記事の作成に失敗した旨のメッセージを表示する` のテストは通りました。
+
+![ 2023-07-14 19.34.44.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/639130/5eaab24c-45d0-cad8-447d-9023d8e9612c.png)
+
+続いて、同じようにして、`記事の作成が成功した場合、記事の作成に成功した旨のメッセージを表示する` のテストを書いていきます。
+
+```tsx test
+
+test("記事の作成が成功した場合、記事の作成に成功した旨のメッセージを表示する", async () => {
+  const { clickSubmitButton } = await setup();
+
+  await clickSubmitButton();
+
+  expect(screen.getByRole("alert")).toHaveTextContent(
+    "記事の作成に成功しました。"
+  );
+});
+```
+
+```tsx
+export const CreatePostPage: React.FC = () => {
+  const [isOpen, setOpen] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const { createPost } = useCreatePost();
+  const handleSubmitPost = useCallback(
+    async (data: Input) => {
+      try {
+        await createPost(data);
++        setMessage("記事の作成に成功しました。");
++        setOpen(true);
+      } catch (err) {
+        ...
+      }
+    },
+    [createPost]
+  );
+
+  return (
+    ...
+  );
+}
+```
+
+テストは通ります。
+
+![ 2023-07-14 19.38.05.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/639130/73534a09-80ec-856a-cc90-67aaf24cdb46.png)
+
+これで一連のテストは全部終了です。
+最後に全部のテストが通ることを確認します。
+
+![testAllGreen.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/639130/dfd7af16-dfd6-2c5b-80bf-832409cca407.png)
+
+- [x] 記事作成が失敗した旨を snackbar に表示する
+- [x] 記事作成が成功した旨を snackbar に表示する
+
+## 最後に
+
+コードが量・文章ともに多くなり、読みづらい文章になってしまいましたが、これで一通りの TDD での入力フォーム開発は完了です。
+
+こちらが今回の記事で作成したコードになります。
+
+https://github.com/diskszk/testing-sandbox/tree/main/src/tdd-with-rhf-zod
