@@ -1,10 +1,10 @@
 ---
 title: フロントエンドにおけるJavaScriptのビルド(WIP)
 tags:
-  - 'JavaScript'
+  - JavaScript
 private: true
-updated_at: ''
-id: null
+updated_at: '2023-09-10T17:43:41+09:00'
+id: d39640af191bc2292fa9
 organization_url_name: null
 ---
 
