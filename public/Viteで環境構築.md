@@ -6,6 +6,7 @@ private: false
 updated_at: '2022-05-18T18:53:39+09:00'
 id: ae1ab798c01d83ba519a
 organization_url_name: null
+slide: false
 ---
 
 ## Viteとは

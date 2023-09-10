@@ -10,6 +10,7 @@ private: false
 updated_at: '2022-08-07T18:00:48+09:00'
 id: cbdfa78f6a8bb988bee8
 organization_url_name: null
+slide: false
 ---
 テストを書きながら状態管理にuseContextとuseReducerを使ってタスク管理アプリを作っていきます。
 
