@@ -9,6 +9,7 @@ updated_at: '2022-11-26T13:25:07+09:00'
 id: dd5bc72c48f377dc184e
 organization_url_name: null
 slide: false
+ignorePublish: false
 ---
 ## 目的
 

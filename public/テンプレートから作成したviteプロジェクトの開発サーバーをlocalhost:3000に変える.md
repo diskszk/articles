@@ -8,6 +8,7 @@ updated_at: '2023-07-18T16:14:40+09:00'
 id: 8c89fa9391fc62522325
 organization_url_name: null
 slide: false
+ignorePublish: false
 ---
 vite のバージョン 3 以降を使う場合、開発サーバーを起動させると、デフォルトで `http://127.0.0.1:5173` に開発サーバーが立ち上がります。
 
