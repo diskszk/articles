@@ -4,12 +4,18 @@ tags:
   - React
   - react-hooks
 private: false
-updated_at: '2022-08-07T16:09:53+09:00'
+updated_at: '2023-10-16T15:59:02+09:00'
 id: e9f4664a3093d001f596
 organization_url_name: null
 slide: false
 ignorePublish: false
 ---
+:::note info
+Reactの公式ドキュメントが更新されて得た新しい情報から記事のアップデートをしました。
+:::
+
+https://qiita.com/diskszk/items/6549584a3843781aac79
+
 ## はじめに
 先日useEffectについてまとめた記事を書きました。本記事では、[こちらの記事](https://qiita.com/diskszk/items/c895c6f28ad4e565b67e)に収まりきらなかった、useEffectを使って初回レンダリング時にWebAPIからデータを取得して表示する法方と勉強し始めの頃にハマったことを文章に起こします。
 
