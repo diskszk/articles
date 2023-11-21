@@ -24,5 +24,9 @@
   "name": "qiita-articles",
   "version": "1.0.0",
   "author": "diskszk <ibalucky23@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "textlint:check": "yarn textlint --dry-run public/",
+    "textlint:fix": "yarn textlint --fix public/"
+  }
 }

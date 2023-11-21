@@ -4,29 +4,29 @@ tags:
   - Zsh
   - shell
 private: false
-updated_at: '2023-11-20T23:51:37+09:00'
+updated_at: '2023-11-21T17:10:31+09:00'
 id: ea6f5e09d9a64b84308e
 organization_url_name: null
 slide: false
 ignorePublish: false
 ---
 ## 記事の内容
-プロンプトを初期状態のからいい感じにする
+プロンプトを初期状態のからいい感じにする。
 
 ## 初期状態から変更する
 
 ![screenshot 2.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/639130/e111da35-c349-7b46-e14f-c76e48afaaec.png)
 
-初期状態では`ユーザー名@ホスト名 現在いるディレクトリ % `と表示されます。
-おそらくホスト名は`ユーザー名-no-MacBook-Air`などとなっているのではないでしょうか。モノクロなのも相まってかなり見にくいです。
+初期状態では `ユーザー名@ホスト名 現在いるディレクトリ % ` と表示されます。
+おそらくホスト名は `ユーザー名-no-MacBook-Air` などとなっているのではないでしょうか。モノクロなのも相まってかなり見にくいです。
 
-プロンプトの情報はシェル変数`PROMPT`に保存されており、`echo $PROMPT` とコマンド入力するとその中身を教えてくれます。
+プロンプトの情報はシェル変数 `PROMPT` に保存されており、`echo $PROMPT` とコマンド入力するとその中身を教えてくれます。
 
 ```sh: shell
 username@hostname ~ % echo $PROMPT 
 %n@%m %1~ %# 
 ```
-zsh特有のPrompt Expansionが用いられていて分かりにくいですが、以下の変数を表示しています。
+zsh 特有の Prompt Expansion が用いられていて分かりにくいですが、以下の変数を表示しています。
 
 https://zsh.sourceforge.io/Doc/Release/Prompt-Expansion.html
 
@@ -38,7 +38,7 @@ https://zsh.sourceforge.io/Doc/Release/Prompt-Expansion.html
 |%# | 管理者権限の場合「＃」、それ以外の場合「%」|
 
 
-次にプロンプトを変更する方法です。シェル変数`PROMPT`の値を書き換えればOKです。
+次にプロンプトを変更する方法です。シェル変数 `PROMPT` の値を書き換えれば OK です。
 
 ```sh: shell
 export $PROMPT="hoge@fuga > "
@@ -51,9 +51,9 @@ hoge@fuga >
 
 ただしこれだけではターミナルを再起動すると元の状態に戻ります。
 
-zshの設定を~ディレクトリ配下にある`~/.zshrc`という設定ファイルに書き込み、保存することで再起動しても設定が保たれます。
+zsh の設定を~ディレクトリ配下にある `~/.zshrc` という設定ファイルに書き込み、保存することで再起動しても設定が保たれます。
 
-たとえば.zshrcに以下の行を追加すればターミナルアプリを開いたり別タブで開くたびに挨拶をしてくれます。
+たとえば。`.zshrc` に以下の行を追加すれば、ターミナルアプリを開いたときに挨拶をしてくれます。
 
 ```.zshrc
 export $PROMPT="hoge@fuga > "
@@ -62,7 +62,7 @@ echo "hello!!"
 # zshのPrompt Expansionを表示する場合 ``print -P`` を用いる
 print -P "hell %n !!"
 ```
-.zshrcを書き換えたら`source ~/.zshrc`とコマンド入力して`.zshrc`を読み込みむことでプロンプトの表示が更新されます。
+.zshrc を書き換えたら `source ~/.zshrc` とコマンド入力して `.zshrc` を読み込みむことでプロンプトの表示が更新されます。
 
 ```sh: shell
 hoge@fuga > source ~/.zshrc
@@ -77,23 +77,23 @@ oge@fuga >
 
 https://qiita.com/syoshika_/items/0211c873475eb0d59e23
 
-こちらの記事を参考にいろんな表示方法を試してみたいのでコマンドラインに入力して行きます。
-左から、%d: カレントディレクトリ, %n ユーザー名, %D: 日付(YY-MM-DD), %T: 時刻(hh:mm), %#: ルートユーザーの場合`#`、それ以外の場合`%` となります。
+こちらの記事を参考にいろんな表示方法を試してみたいのでコマンドラインに入力していきます。
+左から、%d: カレントディレクトリ、 %n ユーザー名、 %D: 日付(YY-MM-DD), %T: 時刻(hh:mm), %#: ルートユーザーの場合 `#`、それ以外の場合 `%` となります。
 
 ```sh: shell
 hoge@fuga > export PROMPT="%%d: %d , %%n: %n, %%D: %D, %%T: %T %%#: %#"
 %d: /Users/username , %n: username, %D: 23-11-20, %T: 22:19 %#: %
 ```
 
-単に`print -P "%%d: %d"` のようにコマンド入力すれば以下のような出力結果になります。
+単に `print -P "%%d: %d"` のようにコマンド入力すれば以下のような出力結果になります。
 
 ```sh
 %D: 23-11-20
 ```
 ## 色をつける
 
-`%F{色名}hoge%f` というように`%F` と `%F` で囲むことで色を付けることができます。
-`%K%k`で囲むことで背景色を変更します。
+`%F{色名}hoge%f` というように `%F` と `%F` で囲むことで色を付けることができます。
+`%K%k` で囲むことで背景色を変更します。
 
 ![screenshot 3.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/639130/80ba66e6-4921-07a3-f826-8ee2199df0c8.png)
 
@@ -102,14 +102,14 @@ hoge@fuga > export PROMPT="%%d: %d , %%n: %n, %%D: %D, %%T: %T %%#: %#"
 
 https://zenn.dev/sprout2000/articles/bd1fac2f3f83bc
 
-こちらの記事の[6. プロンプトへ Git リポジトリの状態を表示する](https://zenn.dev/sprout2000/articles/bd1fac2f3f83bc#6.-%E3%83%97%E3%83%AD%E3%83%B3%E3%83%97%E3%83%88%E3%81%B8-git-%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%81%AE%E7%8A%B6%E6%85%8B%E3%82%92%E8%A1%A8%E7%A4%BA%E3%81%99%E3%82%8B) を参考にGitリポジトリの状態を表示する処理を追加して行きます。
+こちらの記事の[6. プロンプトへ Git リポジトリの状態を表示する](https://zenn.dev/sprout2000/articles/bd1fac2f3f83bc#6.-%E3%83%97%E3%83%AD%E3%83%B3%E3%83%97%E3%83%88%E3%81%B8-git-%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%81%AE%E7%8A%B6%E6%85%8B%E3%82%92%E8%A1%A8%E7%A4%BA%E3%81%99%E3%82%8B) を参考に Git リポジトリの状態を表示する処理を追加していきます。
 
 ### インストール
 ```sh: shell
 brew install zsh-git-prompt
 ```
 
-`~/.zshrc`を開いて以下のコードを貼り付けます。
+`~/.zshrc` を開いて以下のコードを貼り付けます。
 
 ```.zshrc
 + source $(brew --prefix)/opt/zsh-git-prompt/zshrc.sh
@@ -122,7 +122,7 @@ brew install zsh-git-prompt
 
 
 ## さいごに
-さいごにたどり着いたzshの設定を残してこの記事の結びとさせていただきます。
+さいごにたどり着いた zsh の設定を残してこの記事の結びとさせていただきます。
 ``` .zshrc
 export LANG=ja_JP.UTF-8
 
