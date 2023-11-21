@@ -5,14 +5,16 @@ tags:
   - 状態管理
   - react-query
 private: false
-updated_at: '2023-06-06T18:27:07+09:00'
+updated_at: '2023-11-21T18:12:26+09:00'
 id: b754a53aff015587940b
 organization_url_name: null
 slide: false
 ignorePublish: false
 ---
 
-Reactのフロントエンドアプリケーションで、@tanstack/react-query (以下react-query)を使った状態管理の方法を紹介し、メッセージを表示するモーダルを作ってみようと思います。
+<!-- textlint-disable -->
+React のフロントエンドアプリケーションで、@tanstack/react-query (以下 react-query)を使った状態管理の方法を紹介し、メッセージを表示するモーダルを作ってみようと思います。
+<!-- textlint-enable -->
 
 https://tanstack.com/query/latest/
 
@@ -36,11 +38,11 @@ PC: mac(ver.11.7.1)
 
 ### 初期設定
 
-パッケージをインストールする
+パッケージをインストールする。
 
 `$ yarn add -D @tanstack/react-query`
 
-Providerを設定する
+Provider を設定する。
 
 ``` main.tsx
 import React from "react";
@@ -66,8 +68,8 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 );
 ```
 
-QueryClientインスタンスを作成するときに、 `defaultOptions.queries.enabled: false` を設定することで、データfetchを抑制します。
-なので、react-queryを使ってデータfetchをしたい場合には、後述する方法で設定を行うようにしてください。
+QueryClient インスタンスを作成するときに、 `defaultOptions.queries.enabled: false` を設定することで、データ fetch を抑制します。
+なので、react-query を使ってデータ fetch をしたい場合には、後述する方法で設定してください。
 
 ### react-queryで状態管理を行う方法
 
@@ -85,7 +87,7 @@ const queryClient = useQueryClient()
 queryClient.setQueryData<UserState>(["user-state"], {name: "John"})
 ```
 
-#### データを取り出す
+#### データを取りだす
 
 ``` tsx 
 const data = useQuery<UserState>(["user-state"]).data;
@@ -93,7 +95,7 @@ console.log(data && data.user); // John
 ```
 
 
-Reactコンポーネントあるいはカスタムフック関数内でこのように書くことで、異なるコンポーネント間であっても `{name: "John"}` のデータを設定し、取り出すことができます。
+React コンポーネントあるいはカスタムフック関数内でこのように書くことで、異なるコンポーネント間であっても `{name: "John"}` のデータを設定し、取りだすことができます。
 
 
 このとき重要なのは、`queryClient.setQueryData` と `useQuery` の第一引数である `QueryKey` の値が同じであることです。
@@ -102,7 +104,7 @@ Reactコンポーネントあるいはカスタムフック関数内でこのよ
 https://tanstack.com/query/v4/docs/react/reference/QueryClient#queryclientgetquerydata
 
 
-また、先述したreact-queryでデータfetchを行う場合には、main.tsxの QueryClientに `defaultOptions,queries.enabled: false` の設定を書かず、取り出すときに以下のように設定すればデータfetchは抑制されます。
+また、先述した react-query でデータ fetch を行う場合には、main.tsx の QueryClient に `defaultOptions,queries.enabled: false` の設定を書かず、取りだすときに以下のように設定すればデータ fetch は抑制されます。
 ``` tsx
 const data = useQuery(["query-key"], {
   enabled: false,
@@ -112,7 +114,7 @@ const data = useQuery(["query-key"], {
 ## メッセージモーダルの状態を管理する
 
 ### MessageModalコンポーネント
-material-ui を使って、MessageModalコンポーネントを作ります。
+material-ui を使って、MessageModal コンポーネントを作ります。
 
 https://mui.com/material-ui/react-modal/
 
@@ -141,11 +143,11 @@ export const  MessageModal = () => {
 ![sample01.gif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/639130/59ff1891-51e8-9faf-1144-30261d660cb6.gif)
 
 
-今はまだMessageModalコンポーネント内で状態を管理しています。
+今はまだ MessageModal コンポーネント内で状態を管理しています。
 
 ### 状態を管理するカスタムフックを作る
 
-MessageModalの開/閉の状態と、表示する文言をカスタムフック内で管理できるようにします。
+MessageModal の開/閉の状態と、表示する文言をカスタムフック内で管理できるようにします。
 
 ``` ts
 type ModalState = {
@@ -156,7 +158,7 @@ type ModalState = {
 
 また、モーダルを開く際には何かしらの文言が設定されていたほうがいいので、モーダルを開く際に同時に表示する文言も設定します。
 
-カスタムフックの戻り値の型が以下のようになればOKです。
+カスタムフックの戻り値の型が以下のようになれば OK です。
 
 ``` ts 
 type ReturnType = {
@@ -167,7 +169,7 @@ type ReturnType = {
 }
 ```
 
-モーダルを表示するか否かの変数 `isOpen` とモーダルに表示する文言 `message` 及び、開/閉する関数 `open`, `close` を呼び出せるカスタムフックを作ります。
+モーダルを表示するか否かの変数 `isOpen` とモーダルに表示する文言 `message` および、開/閉する関数 `open`, `close` を呼び出せるカスタムフックを作ります。
 
 ``` ts
 export function useModalState(): ReturnType {
@@ -198,7 +200,7 @@ export function useModalState(): ReturnType {
 }
 ```
 
-こうしてできたカスタムフックを、MessageModalコンポーネントと、MessageModalを表示させたいコンポーネントで使います。
+こうしてできたカスタムフックを、MessageModal コンポーネントと、MessageModal を表示させたいコンポーネントで使います。
 
 ``` tsx
 export const MessageModal = () => {
@@ -280,4 +282,4 @@ function App() {
 
 ![changed.gif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/639130/7bf390dc-f808-7ce7-b5d8-36e0b0b8e8d4.gif)
 
-以上によりMessageModalの状態を他のコンポーネントから管理すつことができるようになり、楽にMessageModalの開/閉が行えるよになりました。
+以上により MessageModal の状態を他のコンポーネントから管理すつことができるようになり、楽に MessageModal の開/閉が行えるよになりました。

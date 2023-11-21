@@ -5,7 +5,7 @@ tags:
   - React
   - react-testing-library
 private: false
-updated_at: '2023-10-15T21:36:17+09:00'
+updated_at: '2023-11-21T18:12:26+09:00'
 id: 3a4044107ac86d53c60d
 organization_url_name: null
 slide: false
@@ -13,7 +13,9 @@ ignorePublish: false
 ---
 
 ## はじめに
+<!-- textlint-disable -->
 タイトルの通り input タグで入力フォームを作る際の readonly 属性のテストにつまずくことがあったので、解決方法を共有できればなと思います。
+<!-- textlint-enable -->
 
 ## 環境
 ```json

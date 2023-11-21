@@ -7,7 +7,7 @@ tags:
   - React
   - Slate.js
 private: false
-updated_at: '2021-09-05T14:05:11+09:00'
+updated_at: '2023-11-21T18:12:26+09:00'
 id: c895c6f28ad4e565b67e
 organization_url_name: null
 slide: false
@@ -15,24 +15,25 @@ ignorePublish: false
 ---
 # はじめに
 
-フロントエンドエンジニアとして初のプロダクトでリッチなテキストエディタ開発をすることになり、Slate.jsというライブラリに出会いました。
-開発でキャッチアップしたことや、Slate.jsに触れたみた感触などをお話ししたいと思います。
+フロントエンドエンジニアとして初のプロダクトでリッチなテキストエディタ開発をすることになり、Slate.js というライブラリに出会いました。
+開発でキャッチアップしたことや、Slate.js に触れたみた感触などをお話しします。
 
 # Slate.js とは
 
-公式GitHub https://github.com/ianstormtaylor/slate
+公式 GitHub https://github.com/ianstormtaylor/slate
 公式ドキュメント https://docs.slatejs.org
 
-SlateはReactとImmutableの上に構築されたフレームワークであり、Reactを用いてWYSIWYGエディタやMarkdownエディタなど、リッチテキストエディタを開発することができます。
-※Slate.jsは現在ベータ版なので破壊的変更が行われる可能性があるとのことです。
+Slate は React と Immutable の上に構築されたフレームワークであり、React を用いて WYSIWYG エディタや Markdown エディタなど、リッチテキストエディタを開発できます。
+<!-- textlint-disable -->
+※Slate.js は現在ベータ版なので破壊的変更が行われる可能性があるとのことです。
+<!-- textlint-enable -->
 
 ## Slateのいいところ
 
 - 公式の[examples](https://www.slatejs.org/examples/richtext)が豊富
-- history管理がラク
-- Markdownエディタも作れる
-- 型を定義して開発するから安全に作れる(TypeScriptの場合)
-
+- history 管理がラク
+- Markdown エディタも作れる
+- 型を定義して開発するから安全に作れる(TypeScript の場合)
 
 
 # WYSIWYG(ウィジウィグ)とは
@@ -42,38 +43,40 @@ SlateはReactとImmutableの上に構築されたフレームワークであり�
 
 ## Markdownエディタとの比較
 
-QiitaのエディタやREADME.mdなどで使われるマークダウン形式とは異なり、入力した値がそのまま画面に表示されるエディタをWYSIWYGエディタなどと呼ばれています。
+Qiita のエディタや README.md などで使われるマークダウン形式とは異なり、入力した値がそのまま画面に表示されるエディタを WYSIWYG エディタなどと呼ばれています。
 
-Markdown記法を用いて文書に装飾を施すには、ある程度の学習が必要ですが、慣れれば使いやすいですし、好んで使うエンジニアの方も多いと思います。
-それに対しWYSIWYGは、入力したものがそのままプレビューとして表示され、ツールバーやショートカットを用いて装飾することができるものもあります。Microsoft WordやMacのメモアプリなどでも使われており、非エンジニアでも直感的に使用することができます。
+<!-- textlint-disable -->
+Markdown 記法を用いて文書に装飾を施すには、ある程度の学習が必要ですが、慣れれば使いやすいですし、好んで使うエンジニアの方も多いと思います。
+<!-- textlint-enable -->
+それに対し WYSIWYG は、入力したものがそのままプレビューとして表示され、ツールバーやショートカットを用いて装飾できるものもあります。Microsoft Word や Mac のメモアプリなどでも使われており、非エンジニアでも直感的に使用できます。
 
-わざわざ比較してしまいましたが、多くのWYSYIWYGエディタで一部マークダウン的な記法を用いているものも見られます。
+わざわざ比較してしまいましたが、多くの WYSYIWYG エディタで一部マークダウン的な記法を用いているものも見られます。
 
 ## なにができるか
 
-HTMLのtextareaタグでもキーボードでの入力を画面に表示することは可能です。しかし、基本的に文字列として扱う為、部分的な装飾を施すのは難しいと言えるでしょう。
-WYSIWYGエディタであれば部分的に**文字を太くしたり** 、*イタリック体*にする、`コードブロック`で囲う、[ハイパーリンク](https://ja.wikipedia.org/wiki/%E3%83%8F%E3%82%A4%E3%83%91%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%AF)にするなどの装飾を施す等を、ツールバーやショートカットキーを用いて実現できます。
-また、`#ハッシュタグ`や`@メンション`など、特定の文字の入力に応じた機能を付け加えることも可能です。
+HTML の textarea タグでもキーボードでの入力を画面に表示できます。しかし、基本的に文字列として扱う為、部分的な装飾を施すのは難しいと言えるでしょう。
+WYSIWYG エディタであれば部分的に**文字を太くしたり** 、*イタリック体*にする、`コードブロック` で囲う、[ハイパーリンク](https://ja.wikipedia.org/wiki/%E3%83%8F%E3%82%A4%E3%83%91%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%AF)にするなどの装飾を施す等をツールバーやショートカットキーを用いて実現できます。
+また、`#ハッシュタグ` や `@メンション` など、特定の文字の入力に応じた機能を付け加えることも可能です。
 
 >この記事内の装飾はQiitaのマークダウン記法に則り記載しております。
 
 
 # contenteditable
-HTMLの属性に`contenteditable="true"`を付け加えれば、divタグでもpタグでも編集可能になります。Slate.jsではcontenteditableを基にWYSIWYGエディタを開発することができます。
+HTML の属性に `contenteditable="true"` を付け加えれば、div タグでも p タグでも編集可能になります。Slate.js では contenteditable を基に WYSIWYG エディタを開発できます。
 https://developer.mozilla.org/ja/docs/Web/HTML/Global_attributes/contenteditable
 
 # 実践編
 
-[公式のチュートリアル](https://docs.slatejs.org/walkthroughs/01-installing-slate)を基に実際にSlate.jsでエディタを開発してみます。
+[公式のチュートリアル](https://docs.slatejs.org/walkthroughs/01-installing-slate)を基に Slate.js でエディタを開発してみます。
 
 ## 完成形
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/639130/854ca50a-7068-76ca-890e-db503cd53a32.png)
 
 以下の機能を持ちます。
-- `Ctrl + b`のショートカットキーで文字を太くする
-- ツールバーの`b`(太字)をクリックすると文字を太くする
-- `Ctrl + バッククウォート`のショートカットキーでコードブロックを作成する
-- ツールバーの`<>`(コードブロック)をクリックするとコードブロックを作成する
+- `Ctrl + b` のショートカットキーで文字を太くする
+- ツールバーの `b`(太字)をクリックすると文字を太くする
+- `Ctrl + バッククウォート` のショートカットキーでコードブロックを作成する
+- ツールバーの `<>`(コードブロック)をクリックするとコードブロックを作成する
 
 ## Slateのバージョン
 slate: 0.65.x
@@ -88,7 +91,7 @@ slate-react: 0.65.x
 ```
 
 ### 型定義ファイルを作成  
-TypeScriptで書く場合には型定義ファイルの作成が必須となります。
+TypeScript で書く場合には型定義ファイルの作成が必須となります。
 
 ```
  touch src/custom-types.d.ts
@@ -111,7 +114,7 @@ declare module "slate" {
 ```
 
 ### Editorコンポーネントの作成  
-エディタのUIになるコンポーネントを作成します。
+エディタの UI になるコンポーネントを作成します。
 
 ```Editro.tsx
 import React, { useMemo, useState } from "react";
@@ -143,13 +146,13 @@ const initialValue: Descendant[] = [
 ];
 ```
 
-Slateコンポーネントには、value, editor, onChangeの3つのpropsが必要となります。
-valueに格納されている値が画面上に表示され、onChangeで書き換えます。
+Slate コンポーネントには、value, editor, onChange の 3 つの props が必要となります。
+value に格納されている値が画面上に表示され、onChange で書き換えます。
 
 開発サーバーを立てて確認してみます。
 
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/639130/9ff0eed2-ca72-0948-e666-c1b1f1cbe6f9.png)
-(スタイリングは適当です）
+(スタイリングは適当です)
 'Hello World!' の文字を編集できます。
 
 ## Step.2  「コードブロック」 を作成
@@ -203,8 +206,8 @@ export const Element: React.FC<RenderElementProps> = (props) => {
 };
 ```
 
-### EditorコンポーネントからElementを呼び出す
-EditableのrenderElementにuseCallbackでmemo化したElementを渡します。
+### EditorコンポーネントからElementを呼びだす
+Editable の renderElement に useCallback で memo 化した Element を渡します。
 
 ```Editor.tsx
 export const Editor: React.FC = () => {
@@ -231,16 +234,16 @@ export const Editor: React.FC = () => {
 ```
 
 コードブロックかできているか確認してみます。
-Editor.tsxのinitialStateの'paragraph'を'code'に書き換えてみます。
+Editor.tsx の initialState の'paragraph'を'code'に書き換えてみます。
 
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/639130/d15309ef-7ea9-a4ee-054b-5b179f198a91.png)
 
 無事コードブロッック化されていますね。
 
 ## Step.3 ショートカットキーを設定
-`ctrl + バッククォートキー`でコードブロック化します。
+`ctrl + バッククォートキー` でコードブロック化します。
 
-コードブロック化する関数を作成します
+コードブロック化する関数を作成します。
 
 ```toggleCodeElement.ts
 import { Editor, Transforms, Element } from "slate";
@@ -258,7 +261,7 @@ export function toggleCodeElement(editor: Editor): void {
 }
 ```
 
-EditableのonKeyDown要素にキーボードからの入力に応じた処理を記載していきます。
+Editable の onKeyDown 要素にキーボードからの入力に応じた処理を記載していきます。
 
 ```Editor.tsx
 export const Editor: React.FC = () => {
@@ -287,12 +290,12 @@ export const Editor: React.FC = () => {
 };
 ```
 
-これで`ctrl + バッククォート`でコードブロックかができるようになりました。
+これで `ctrl + バッククォート` でコードブロックかができるようになりました。
 
 ## Step.4 ツールバーを作成
 
 ツールバーを作成し、コードブロック化のボタンを作成します。
-コードブロック化の処理は`ctrl + バッククォート`をキー入力した時と同じなのでpropsとしてeditorを渡します。
+コードブロック化の処理は `ctrl + バッククォート` をキー入力した時と同じなので props として editor を渡します。
 
 ```Toolbar.tsx
 export const Toolbar: React.FC<Props> = ({ editor }) => {
@@ -309,9 +312,9 @@ export const Toolbar: React.FC<Props> = ({ editor }) => {
 ```
 
 ## Step.5 「太字」 を追加する
-次は文字を太字に変える機能を作ります。Step.3, 4と同様にコードを書いていけばいいですが、Step3ではブロック要素となるcodeタグをElementというコンポーネントに記載しましたが、太字にするstorongタグはインライン要素なのでLeafというコンポーネントに追加していきます。
+次は文字を太字に変える機能を作ります。基本的には Step.3, 4 と同様にコードを書いていけばいいです。Step3 ではブロック要素となる code タグを Element というコンポーネントに記載しましたが、太字にする storong タグはインライン要素なので Leaf というコンポーネントに追加していきます。
 
-Leafコンポーネントを作成して呼び出します。
+Leaf コンポーネントを作成して呼び出します。
 
 ```Leaf.tsx
 import { RenderLeafProps } from "slate-react";
@@ -350,15 +353,15 @@ export const Editor: React.FC = () => {
 };
 ```
 
-次に、custom-types.d.tsのCustomTextの型に太字かどうかのプロパティを追加します。
+次に、custom-types.d.ts の CustomText の型に太字かどうかのプロパティを追加します。
 
 ```custom-types.d.ts
 type CustomText = { text: string; bold?: boolean };
 
 ```
 
-Leafコンポーネントに太字になる際のコードを書いていきます。
-何らかの処理でテキストの真偽値を変え、trueだったらテキストにstrong要素を追加するイメージです。
+Leaf コンポーネントへ太字になる際のコードを書いていきます。
+何らかの処理でテキストの真偽値を変え、true だったらテキストに strong 要素を追加するイメージです。
 
 ```Leaf.tsx
 import { RenderLeafProps } from "slate-react";
@@ -443,13 +446,14 @@ export const Toolbar: React.FC<Props> = ({ editor }) => {
 };
 ```
 
-以上でハンズオン形式でのSlate.jsの紹介及び開発は終了です。
-今回作成したdemoアプリのリポジトリは[こちら](https://github.com/diskszk/slate-sample)。
+以上でハンズオン形式での Slate.js の紹介および開発は終了です。
+今回作成した demo アプリのリポジトリは[こちら](https://github.com/diskszk/slate-sample)。
 
 # おわりに
-Slate.jsを通して、今日様々なアプリで見かける`＠メンション`や`#ハッシュタグ`、URLを入力することで`リンク化`機能を(Slate.jsを使ってないにしろ)、こういう方法で実現できるという事を知ることができました。
+Slate.js を通して、今日様々なアプリで見かける `＠メンション` や `#ハッシュタグ`、URL を入力することで `リンク化` 機能を(Slate.js を使ってないにしろ)、こういう方法で実現できるという事を知ることができました。
 
-今回記事の反省点としては、私自身のHTMLの知識(DOMやらNodeやら)が浅いばかりにうまく言語化して説明できない箇所が多々あり、記事を執筆しながら終始もどかしい気持ちでした。
+今回記事の反省点としては、私自身の HTML の知識(DOM やら Node やら)が浅いばかりにうまく言語化して説明できない箇所が多々あり、記事を執筆しながら終始もどかしい気持ちでした。
 
-私自身まだまだフロントエンド勉強中の身につき、誤った情報を載せてしまっている可能性がございます。もしお気づきになられた際にはご指摘・補足等いただけましたら大変ありがたく思いますm(_ _)m
-
+<!-- textlint-disable -->
+私自身まだまだフロントエンド勉強中の身につき、誤った情報を載せてしまっている可能性がございます。もしお気づきになられた際にはご指摘・補足等いただけましたら大変ありがたく思います。
+<!-- textlint-enable -->

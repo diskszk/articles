@@ -6,7 +6,7 @@ tags:
   - react-testing-library
   - reacthooks
 private: false
-updated_at: '2021-11-10T20:33:04+09:00'
+updated_at: '2023-11-21T18:12:25+09:00'
 id: ea4c3900fccb3202dab3
 organization_url_name: null
 slide: false
@@ -14,9 +14,9 @@ ignorePublish: false
 ---
 ## はじめに
 
-Custom Hookを使うと面倒くさい事この上ないReactをテストする時、ロジック部分を分離して小さくテストしやすくなりそうだなと思い、やってみることにしました。
+Custom Hook を使うと面倒くさい事この上ない React をテストする時、ロジック部分を分離して小さくテストしやすくなりそうだなと思い、やってみることにしました。
 
-今回は一番よくあるカウンターのデモと、実際の開発でもよく使うであろうinputでの入力の例を用いていきます。
+今回は一番よくあるカウンターのデモと、実際の開発でもよく使うであろう input での入力の例を用いていきます。
 
 [testing-library/react](https://testing-library.com/docs/react-testing-library/intro/)と[testing-library/react-hooks](https://react-hooks-testing-library.com/)を使ってテストを書いていきます。
 
@@ -32,7 +32,7 @@ https://github.com/testing-library/react-hooks-testing-library
 ### カウンターの例
 
 では早速、カウンターのデモを書いていきます。
-ボタンを押すとstateの値が1増えるというシンプルなものです。
+ボタンを押すと state の値が 1 増えるというシンプルなものです。
 
 
 #### reactコンポーネントにべた書きの場合
@@ -89,8 +89,8 @@ export const Counter: React.FC = () => {
 
 ```
 
-useCounter.tsで`count`変数と`handleIncrement`関数を定義しました。
-これらをCounter.tsxで呼び出す事で`count`と`handleIncrement`を利用してレンダリングや件数の実行を行なっています。
+useCounter.ts で `count` 変数と `handleIncrement` 関数を定義しました。
+これらを Counter.tsx で呼びだす事で `count` と `handleIncrement` を利用してレンダリングや件数の実行を行なっています。
 
 #### Custom Hooksのテスト
 
@@ -119,18 +119,18 @@ describe("useCounter", () => {
 
 ```
 
-`react-testing-library`を使ってテストを実装しています。
-`react-testing-library`の`renderHook`関数を使う事でhooksのテストができるようになります。便利です。
+`react-testing-library` を使ってテストを実装しています。
+`react-testing-library` の `renderHook` 関数を使う事で hooks のテストができるようになります。便利です。
 
-ここでいう`handleIncrement`のような、stateを更新する処理をactの中で呼ぶ必要があります。
+ここでいう `handleIncrement` のような、state を更新する処理を act の中で呼ぶ必要があります。
 
 
 ### テキスト入力の例
 
-次はreactでよく使うinputタグに文字を入力する際のCustom Hooksの例を書いていきます。
-せっかくなので`firstName`と`lastName`の二つのstateを扱うことにします。
-追加で`firstName`には8文字以内、`lastName`には6文字以内というそれぞれ異なる簡単なバリデーションをつけてみます。
-それぞれinputタグを通して入力した文字列を受け取ります。
+次は react でよく使う input タグに文字を入力する際の Custom Hooks の例を書いていきます。
+せっかくなので `firstName` と `lastName` の 2 つの state を扱うことにします。
+追加で `firstName` には 8 文字以内、`lastName` には 6 文字以内というそれぞれ異なる簡単なバリデーションをつけてみます。
+それぞれ input タグを通して入力した文字列を受け取ります。
 
 #### reactコンポーネントにべた書き
 
@@ -170,7 +170,7 @@ export const TextInput: React.FC = () => {
 
 ```
 
-stateが3つ4つとさらに増えていったら書くの結構大変そうですし、バリデーションも全部べた書きにしたらだいぶ辛くなりそうです。
+state が 3 つ 4 つとさらに増えていったら書くの結構大変そうですし、バリデーションも全部べた書きにしたらだいぶ辛くなりそうです。
 
 #### Custom Hookに分離
 ```useTextInput.ts
@@ -211,17 +211,17 @@ export const TextInput: React.FC = () => {
 };
 ```
 
-useCounter.tsで`value`変数と`handleChange`関数を定義しました。
-reactコンポーネントでの記述量がグッと減りました。
-また、useTextInputの引数に設定した数値がそれぞれの最大入力可能文字数になります。
+useCounter.ts で `value` 変数と `handleChange` 関数を定義しました。
+react コンポーネントでの記述量がグッと減りました。
+また、useTextInput の引数に設定した数値がそれぞれの最大入力可能文字数になります。
 
 #### 関数のreturn
-`useCounter.ts`と`useTextInput`でreturnの時の形が異なります。オブジェクトとしてreturnする場合、呼び出し先で使える変数名・関数名は基本同じ名前でしか呼び出します。
+`useCounter.ts` と `useTextInput` で return の時の形が異なります。オブジェクトとして return する場合、呼び出し先で使える変数名・関数名は基本同じ名前でしか呼び出します。
 
 ```
 const { count, handleIncrement } = useCounter();
 ```
-一方、配列にいれてreturnすることで、呼び出し先で使う時に別の名前をつけることができます。
+一方、配列にいれて return することで、呼び出し先で使う時に別の名前をつけることができます。
 
 ```
 const [ name, handleChangeName ] = useTextInput();
@@ -229,11 +229,10 @@ const [ counter, setCounter] = useState<number>(0);
 const [ name, setName ] = useState<string>("");
 ```
 
-前者の場合、使いたいものだけを呼び出せますが、後者だと順番に応じたものを呼び出すことになるので、例えばuseTextInputから`handleChangeName`だけを呼び出したい時は
+前者の場合、使いたいものだけを呼び出せますが、後者だと順番に応じたものを呼びだすことになるので、例えば useTextInput から `handleChangeName` だけを呼び出したい時は以下のようにします。
 ```
 const [ , handleChangeName ] = useTextInput();
 ```
-というようにします。
 
 #### Custom Hooksのテスト
 
@@ -262,16 +261,16 @@ describe("UseTextInput", () => {
 });
 ```
 
-`useTextInput.spec.tsx`ではDOMのテストと組み合わせてCustom Hookをテストしていきます。
-テスト用のinputを作成し`useTextInput`で作った値と関数を持たせます。
+`useTextInput.spec.tsx` では DOM のテストと組み合わせて Custom Hook をテストしていきます。
+テスト用の input を作成し `useTextInput` で作った値と関数を持たせます。
 
-ここのやり方に関してはもっといい方法あるよ！これはよくないよ!!などの意見ありましたら是非お願いします!!
+ここのやり方に関してはもっといい方法あるよ！これはよくないよ！!などの意見ありましたら是非お願いします！!
 
 ## さいごに
 
 今後取っていきたい設計方針としてはこんな感じです。
-- reactコンポーネントからCustom Hookに分離する
-- Custom Hookのユニットテストはどんどんやっていく
-- DOMのユニットテストは、、、リソースと相談しつつ頑張っていきます...
+- react コンポーネントから Custom Hook に分離する
+- Custom Hook のユニットテストはどんどんやっていく
+- DOM のユニットテストはリソースと相談しつつ頑張っていきます
 
 テストと仲良くなって安全なプログラムを書けるように精進していきます。

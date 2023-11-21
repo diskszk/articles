@@ -7,7 +7,7 @@ tags:
   - サーバーレス
   - Firestore
 private: false
-updated_at: '2023-07-11T21:52:16+09:00'
+updated_at: '2023-11-21T18:12:26+09:00'
 id: 61fac9d143f6feb5de25
 organization_url_name: null
 slide: false
@@ -23,8 +23,9 @@ befor
 after
 <img width="800" alt="after" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/639130/1448ab58-43ce-47d7-9ec4-1b855076c16c.png">
 
-
+<!-- textlint-disable -->
 私自身フロントエンドでの業務経験しかなかったが、今回やってみてサーバーサイドの理解がぐっと深まりました。フロントエンド + Firestore でアプリを作れるようになったという方にも是非試してもらえたらと思います。  
+<!-- textlint-enable -->
 
 
 ## この記事で行うこと
@@ -267,10 +268,11 @@ app.use(todosRouter);
 
 export const api = functions.region("asia-northeast1").https.onRequest(app);
 ```
-
+<!-- textlint-disable -->
 :::note
  上記の設定ではあらゆるオリジンから WebAPI へのアクセスを許可している状態です。気になる方は個別で cors の設定をするといいでしょう。
 :::
+<!-- textlint-enable -->
 
 これで WebAPI の実装は完了です。  
 `$ yarn serve` コマンドを実行し、 curl コマンドで上手く動くかの確認をし、問題なければデプロイを行います。  
@@ -487,4 +489,6 @@ export const TodoItem: React.FC<Props> = ({ todo }) => {
 
 https://github.com/diskszk/sample-todo-app
 
+<!-- textlint-disable -->
 firebase の設定など本記事で伝えたい内容では無いところの説明が蔑ろになってしまい、読み辛い箇所もあったかと思います。そのあたりに関しては参考になる記事が多く出回っているのでそちらを参考にしてみてください。
+<!-- textlint-enable -->

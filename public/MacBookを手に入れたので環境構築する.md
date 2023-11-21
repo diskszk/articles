@@ -15,17 +15,23 @@ ignorePublish: true
 先日新しく手に入れた MacBook Air での初期設定の備忘録。
 
 ### スペック
+<!-- textlint-disable -->
 OS: macOS Ventura
 shell: zsh
-キーボード: US 配列
+キーボード： US 配列
+<!-- textlint-enable -->
 
+<!-- textlint-disable -->
 :::note warn
 ツールをダウンロードする際に入力したコマンドを載せていますが、公式サイトへのリンクを貼りますので、正しいページであることをご確認の上、照らし合わせて入力することを推奨します。
 :::
+<!-- textlint-enable -->
 
+<!-- textlint-disable -->
 :::note warn
 筆者は shell に zsh を使っています。 bash など他の shell を使っている場合参照するファイルや記法が異なるのでご自身でご確認ください。
 :::
+<!-- textlint-enable -->
 
 ## ライブ変換を OFF
 
@@ -50,7 +56,7 @@ https://next-blog.net/mac-screenshots/
 ### 保存先を変更
 
 デフォルトだとデスクトップに保存されるので保存先を変更します。
-finder から アプリケーション > ユーティリティ > スクリーンショット を選択し開きます。
+finder からアプリケーション → ユーティリティ → スクリーンショットを選択し開きます。
 
 <!-- TODO: img -->
 
@@ -68,13 +74,11 @@ $ defaults write com.apple.screencapture name screenshot
 $ defaults write com.apple.screencapture include-date -bool false
 ```
 
-アウトプット
-
 - screenshot.png
 - screenshot 1.png
 - screenshot 2.png
 
-## 画面録画を gif 形式にする
+## 画面録画を GIF 形式にする
 
 <!-- TODO: 設定する -->
 
@@ -92,7 +96,7 @@ Mac ではデフォルトでは Safari が入っていますが、Chrome を使�
 https://karabiner-elements.pqrs.org/
 
 Karabiner-Elements は macOS のキーボードをカスタマイズするためのツールです。
-すべて自分好みにカスタマイズすることもできますし、用意されている `complex rules` を import すれば難しい設定をせずに使うこともできます。
+すべて自分好みにカスタマイズできますし、用意されている `complex rules` を import すれば難しい設定をせずに使うこともできます。
 
 ### インストール方法
 
@@ -104,15 +108,15 @@ https://karabiner-elements.pqrs.org/docs/getting-started/installation/
 
 #### 「caps lock」キーを「control」キーにする
 
-1. `Karabiner-Elements` を開き「Simple Modifications」の「Add item」をクリックします。
+1. `Karabiner-Elements` を開き「Simple Modifications」の「Add item」をクリックします
 
-1. 「Modifier keys」から「caps_lock」と「left_control」を選択します。
+1. 「Modifier keys」から「caps_lock」と「left_control」を選択します
 
 #### For Japanese （日本語環境向けの設定） (rev 6)をインポートする
 
 https://karabiner-elements.pqrs.org/docs/manual/configuration/configure-complex-modifications/
 
-上記説明を参考にします。 Step2 の検索バーに`For Japanese` と入力し `For Japanese （日本語環境向けの設定） (rev 6)` の横の `import` をクリックし、あとは上記説明通り進めます。
+上記説明を参考にします。 Step2 の検索バーに `For Japanese` と入力し `For Japanese （日本語環境向けの設定） (rev 6)` の横の `import` をクリックし、あとは上記説明通り進めます。
 Step4 でそれぞれのルールを enable(適用する)を決められるので、気に入ったルールがあれば取り入れてみましょう。
 
 私の場合、`右コマンドキーを単体で押したときに、かなキーを送信、左コントロールキーを単体で押したときに、英数キーを送信する。 (rev 2)` を追加して、US 配列キーボードでのスペースキーの左右のコマンドキーの入力によってそれぞれ入力ソースを切り替えられるようにしました。
