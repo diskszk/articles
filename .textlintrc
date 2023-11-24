@@ -107,7 +107,12 @@
     }
   },
   "filters": {
-    "comments": true
+    "comments": true,
+    "allowlist": {
+      "allow": [
+        ":::"
+      ]
+    }
   },
   "@proofdict/proofdict": {
     "dictURL": "https://azu.github.io/proof-dictionary/"
